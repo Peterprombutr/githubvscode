@@ -3,16 +3,23 @@ from PySide2.QtCore import *
 from PySide2.QtWidgets import  *
 from PySide2.QtGui import *
 
-class MainWindow(QMainWindow):
+class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.label = QLabel()
         self.setWindowTitle("A Simple paint program")
-        canvas = QPixmap(400,300)
-        self.label.setPixmap(canvas)
-        self.setCentralWidget(self.label)
-
+        self.vb = QVBoxLayout()
+        self.canvas = QPixmap(400,300)
+        self.label.setPixmap(self.canvas)
+        self.vb.addWidget(self.label)
+        self.clearButton = QPushButton("Clear")
+        self.vb.addWidget(self.clearButton)
+        self.clearButton.clicked.connect(self.clearCanvas)
+        self.setLayout(self.vb)
         self.last_x, self.last_y = None, None
+
+    def clearCanvas(self):
+        self.canvas.fill(QColor("White"))
     
     def mouseMoveEvent(self, event):
         if self.last_x is None:
