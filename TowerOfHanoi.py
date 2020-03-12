@@ -1,43 +1,35 @@
-
-import sys
-
-import PySide2
-from PySide2.QtCore import *
-from PySide2.QtWidgets import  *
-from PySide2.QtGui import *
-import turtle as t
+import turtle
 
 class Disk(object):
-    def __init__(self,name,x,y,h,w,color):
-        self.name = name
-        self.x = x
-        self.y = y
-        self.height = h
-        self.width = w
-        self.color = color
-    
-    def newpos(self,x,y):
-        self.x = x
-        self.y = y
 
+    def __init__(self,name="",xpos=0,ypos=0,height=20,width=40):
+        self.dname = name
+        self.dxpos = xpos
+        self.dypos = ypos
+        self.dheight = height
+        self.dwidth = width
+
+    def showdisk(self):
+        turtle.lt(90)
+        turtle.penup()
+        turtle.goto(self.dxpos,self.dypos)
+        turtle.pendown()
+        turtle.rt(90)
+        for x in range(2):
+            turtle.fd(self.dwidth/2)
+            turtle.lt(90)
+            turtle.fd(self.dheight)
+            turtle.lt(90)
+            turtle.fd(self.dwidth/2)
+
+    def newpos(self,xpos,ypos):
+        self.dxpos = xpos
+        self.dypos = ypos
+        
     def cleardisk(self):
-        t.seth(0)
-        t.pencolor("white")
-        t.fillcolor("white")
-        t.begin_fill()
-        t.forward(self.w/2)
-        t.right(90)
-        t.forward(self.h)
-        t.right(90)
-        t.forward(self.h)
-        t.right(90)
-        t.forward(self.h)
-        t.right(90)
-        t.forward(self.w/2)
-        t.end_fill()
-        t.pencolor("black")
+        turtle.pencolor("WHITE")
+        self.showdisk()
+        turtle.pencolor("BLACK")
 
-class Pole(object):
-    def __init__(self,name,stack,toppos,x,y,thickness,length,color)
 
     
