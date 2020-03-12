@@ -11,15 +11,23 @@ class MainWindow(QWidget):
         self.vb = QVBoxLayout()
         self.canvas = QPixmap(400,300)
         self.label.setPixmap(self.canvas)
+        self.ass = QLabel("Drag to draw a line")
         self.vb.addWidget(self.label)
         self.clearButton = QPushButton("Clear")
+        self.vb.addWidget(self.ass)
         self.vb.addWidget(self.clearButton)
         self.clearButton.clicked.connect(self.clearCanvas)
         self.setLayout(self.vb)
         self.last_x, self.last_y = None, None
 
     def clearCanvas(self):
-        self.canvas.fill(QColor("White"))
+        for i in reversed(range(self.vb.count())): 
+            self.vb.itemAt(i).widget().setParent(None)
+        self.canvas = QPixmap(400,300)
+        self.label.setPixmap(self.canvas)
+        self.vb.addWidget(self.label)
+        self.vb.addWidget(self.ass)
+        self.vb.addWidget(self.clearButton)
     
     def mouseMoveEvent(self, event):
         if self.last_x is None:
