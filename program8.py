@@ -50,14 +50,14 @@ class Simple_drawing_window2(QWidget):
         p.drawPie(50,150,100,100,0,180*16)
 
         p.drawPolygon([QPoint(50,200),QPoint(150,200),QPoint(100,400)])
-        p.drawPixmap(QRect(200,100,320,329), self.rabbit)
+        p.drawPixmap(QRect(200,100,320,329), self.fish)
         p.end()
 
 
 def main():
     app = QApplication(sys.argv)
 
-    w= Simple_drawing_window()
+    w= Simple_drawing_window2()
     w.show()
     print("ass")
 
